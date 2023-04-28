@@ -37,14 +37,10 @@ div {
 		let obj = JSON.parse(a);
 		console.log(typeof a, typeof obj); // response, 요청에 대한 응답 결과를 반환하는 객체죠
 		
-		if (obj.rst == "ok") {
-			// div2번째 공간에 value데이터만 출력하기
-			// $('#d2').append(obj.rst);
-			// $('#d2').text(obj.rst);
-			$('#d2').html(`<p style='color: green;'>로그인 ${obj.rst}</p>`);
-		} else {
-			$('#d2').html(`<p style='color: red;'>로그인 ${obj.rst}</p>`);
-		}
+		// div2번째 공간에 value데이터만 출력하기
+		// $('#d2').append(obj.rst);
+		// $('#d2').text(obj.rst);
+		$('#d2').html(`<p style='color: red;'>로그인 ${obj.rst}</p>`);
 		
 		alert("status >> " + b); // 상태 문자값(ex.success)
 		alert("xhr >> " + c.status); // 상태 코드값 (ex.200)
