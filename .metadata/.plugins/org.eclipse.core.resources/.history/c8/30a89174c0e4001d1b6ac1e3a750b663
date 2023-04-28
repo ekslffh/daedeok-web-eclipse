@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="text" value="스즈메">
+	<input type="button" value="get">
+	<input type="button" value="post">
+	
+<script>
+
+	let v_btn = document.querySelectorAll('input');
+	let v_val = document.querySelector('input');
+	// get버튼에 이벤트 주고 콜백함수 안에 ajax배치하기
+	v_btn[1].addEventListener('click', function() {
+		
+		// 기본 ajax문법 작성하기..
+		// 1. 객체 생성하기 - XMLHttpRequest
+		let ajax = new XMLHttpRequest();
+		// 2. 요청정보 설정 - open(method, url, async)
+		ajax.open('get', 'testGet.jsp?userNm=' + v_val.value, true)	
+		// 4. 요청에 대한 응답 받기 - onreadystatechange, readyState, status, response
+		ajax.onreadystatechange = function() {
+			if (ajax.readState == 4 && ajax.status == 200) {
+				console.log(ajax.responseText);
+			}
+		}
+		// 3. 요청정보 전송 - send
+		ajax.send();
+		
+	});
+
+</script>
+</body>
+</html>

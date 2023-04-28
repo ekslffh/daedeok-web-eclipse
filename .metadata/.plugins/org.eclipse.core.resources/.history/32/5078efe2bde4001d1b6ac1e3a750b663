@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="text" value="스즈메">
+	<input type="button" value="get">
+	<input type="button" value="post">
+	
+<script>
+	// 기본 ajax문법 작성하기..
+	// 1. 객체 생성하기 - XMLHttpRequest
+	let req = new XMLHttpRequest();
+	// 2. 요청정보 설정 - open(method, url, async)
+	req.open('get', '')	
+	// 4. 요청에 대한 응답 받기 - onreadystatechange, readyState, status, response
+	req.onreadystatechange = function() {
+		if (req.readState == 4 && ajax.status == 200) {
+			
+		}
+	}
+	// 3. 요청정보 전송 - send
+	req.send();
+</script>
+</body>
+</html>

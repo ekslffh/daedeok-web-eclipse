@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	border-style: solid;
+	width: 50%;
+	height: 10vh;
+}
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<input id="userId"> <br>
+	<input type="password" id="userPw">
+	<button>버튼</button>
+	
+	<div id="d1"></div>
+	<div id="d2"></div>
+</body>
+<script>
+	$('button').on('click', function() {
+		
+		let uId = $('#userId').val();
+		let uPw = $('#userPw').val();
+		
+		// load() - 서버로부터 응답받은 데이터를 선택된 요소에 콘텐츠로 대체
+		// ajax()보다 간소화 된 비동기 호출 메소드
+		// $(selector).load(url, data, callback)
+		$('#d1').load('loadTest.jsp', {userId:uId, userPw:uPw}, f_cb);
+		
+	});
+	
+	function f_cb(a, b, c) { // response, status, xhr
+		let obj = JSON.parse(a);
+		console.log(typeof a, typeof obj); // response, 요청에 대한 응답 결과를 반환하는 객체죠
+		
+		// div2번째 공간에 value데이터만 출력하기
+		// $('#d2').append(obj.rst);
+		$('#d2').innerText = obj.rst;
+	}
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="text" value="스즈메">
+	<input type="button" value="get">
+	<input type="button" value="post">
+	<div id='disp'></div>
+	
+<script>
+
+	let v_btn = document.querySelectorAll('input');
+	let v_val = document.querySelector('input');
+	let v_disp = document.querySelector('#disp');
+	
+	// get버튼에 이벤트 주고 콜백함수 안에 ajax배치하기
+	v_btn[1].addEventListener('click', function() {
+		
+		// 기본 ajax문법 작성하기..
+		// 1. 객체 생성하기 - XMLHttpRequest
+		let ajax = new XMLHttpRequest();
+		// 2. 요청정보 설정 - open(method, url, async)
+		// ajax.open('get', 'testGet.jsp?userNm=' + v_val.value);	
+		ajax.open('get', `/webPro/Ajax?userNm=${v_val.value}`);	
+		// 4. 요청에 대한 응답 받기 - onreadystatechange, readyState, status, response
+		ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				console.log(ajax.responseText);
+// 				v_disp.insertAdjacentHTML('beforeend', ajax.responseText);
+				let jsonObj = JSON.parse(ajax.responseText); // json => js object로 변환
+				
+				// 출력
+				v_disp.insertAdjacentHTML('beforeend'
+						,"<h4 style='color: blue;'>" + jsonObj.name + "의 문단속</h4>");
+			}
+		}
+		// 3. 요청정보 전송 - send
+		ajax.send();
+		
+	});
+
+	v_btn[2].onclick = function() {
+		// 1 ~ 4 까지 ajax문법 작성
+		let ajax = new XMLHttpRequest();
+// 		let data = "userName=" + v_val.value;
+
+		// json형식 데이터
+		let data = {uNm : v_val.value};
+		
+		ajax.open('post', '/webPro/Ajax'); // Ajax Servlet의 doPost()로 이동
+		ajax.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
+				v_disp.insertAdjacentHTML('beforeend'
+						, this.responseText)
+			}
+		}
+		// content-type 설정하기 -> text/plain형식을 urlEncoded형식으로 변경해야 key로 value에 접근가능
+		// post로 데이터를 넘길 때 반드시 설정해줘야 함
+		ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=utf-8");
+		ajax.send(data);
+		
+		// 텍스트 데이터를 응답결과로 보내고 화면에 출력해보세요
+	};
+
+</script>
+</body>
+</html>

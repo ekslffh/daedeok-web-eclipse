@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	<form>
+	서버로 값을 전송할 때 사용하는 태그(요소)
+	name속성으로 값을 전달한다.(AJAX사용시 제외)
+	한 페이지 내 여러번 작성해도 상관엇으나, form요소 안에 또다른 form요소를 넣지 않는다.
+	
+	action의 기본 값은 자기페이지이며 보통 서버사이드 프로그래밍 페이지로 지정된다.
+	
+	method는 데이터를 전송하는 방식으로 form에서는 2가지 방식(get,post)을 사용한다.
+	get방식으로 데이터가 넘어갈 때 
+	url뒤에 붙는 ?key1=value1&key2=value의 형식을 queryString이라고 부른다.
+	
+	
+	
+	
+	GET:
+		- 요청시 길이 제한이 있으며 브라우저마다 다름
+		- 정보가 노출되는 구조이므로 중요한 정보는 다루지 않음
+	POST:
+		- 길이 제한이 없어 용량이 큰 데이터를 보낼 때 사용
+		- url에 정보가 노출되지 않으므로 보안이 필요한 부분에 사용
+		-  => 암호화되지 않은 경우 http메시지 정보 부분에서 데이터 확인가능하므로 완벽한 보안은 아님
+		
+	
+	* 현재 작성된 내용은 중요하므로 머리속에 기억해두기 * 
+-->
+
+	<form action="test.jsp" method="post">
+		이름<input name="name">
+		별명<input type="text" name="alias"> <br>
+		내가 잘하는 것
+		<input type="checkbox" name="skill" value="html">HTML
+		<input type="checkbox" name="skill" value="css">CSS
+<!-- 		속성명과 속성값이 같을 때 속성 값 생략 가능 -->
+		<input type="checkbox" name="skill" value="js"checked>JAVASCRIPT <br><br>
+		<input type="submit">
+	</form>
+
+</body>
+</html>

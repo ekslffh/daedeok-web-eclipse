@@ -1,0 +1,44 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Ajax")
+public class Ajax extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+    public Ajax() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		request.setCharacterEncoding("UTF-8");
+		String uNm = request.getParameter("userNm");
+		System.out.println(">>>>>>>>>>>>>>>>" + uNm);
+		response.setCharacterEncoding("UTF-8"); // 응답 데이터 한글 깨짐 처리
+
+		PrintWriter out = response.getWriter();
+		
+		// print(int)는 문자열 자체로 출력
+		// println => 줄넘김 기능 추가, write()는 줄넘김 기능이 없음
+//		out.println(65);
+		// wirte(int)는 인수를 아키코드로 해석하고 출력
+//		out.write(65);
+		
+		out.write("<h4 style='font-style: italic;'>이름 : " + uNm + "</h4>");
+		
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
